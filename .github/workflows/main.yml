@@ -51,7 +51,7 @@ jobs:
           docker-compose -f docker-compose.ci.yml build
       - name: Run tests
         run: |
-          docker-compose -f docker-compose.ci.yml run --rm web "python3 manage.py test"
+          docker-compose -f docker-compose.ci.yml run --rm web python manage.py test
       - name: Push images
         run: |
           docker push ${{ env.WEB_IMAGE }}
