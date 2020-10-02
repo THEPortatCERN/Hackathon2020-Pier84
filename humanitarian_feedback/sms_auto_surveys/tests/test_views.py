@@ -11,4 +11,4 @@ class BasicTemplateTests(TestCase):
         """
         # Test the home url returns 200
         response = self.client.get("")
-        self.assertEqual(response.status_code, 300)
+        self.assertEqual(response.status_code, 200)
