@@ -1,0 +1,34 @@
+# pull official base image
+FROM nickgryg/alpine-pandas
+
+# set work directory
+WORKDIR /root/humanitarian_feedback
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# install psycopg2
+RUN apk update \
+    && apk add make automake gcc g++ subversion python3-dev \
+    && apk add --virtual build-deps gcc python3-dev musl-dev \
+    && apk add postgresql-dev \
+    && pip install psycopg2 \
+    && apk del build-deps
+
+# install dependencies
+RUN pip install --upgrade pip
+COPY ./requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
+# copy entrypoint-prod.sh
+COPY ./entrypoint.prod.sh entrypoint.prod.sh
+
+# copy project
+COPY . .
+
+# run entrypoint.prod.sh
+RUN mkdir /root/humanitarian_feedback/staticfiles
+RUN mkdir /root/humanitarian_feedback/log
+RUN ["chmod", "+x", "/root/humanitarian_feedback/entrypoint.prod.sh"]
+ENTRYPOINT ["/root/humanitarian_feedback/entrypoint.prod.sh"]

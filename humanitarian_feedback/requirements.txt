@@ -1,0 +1,12 @@
+Django==3.1
+django-appconf==1.0.4
+django-filter==2.3.0
+django-maintenancemode==0.11.3
+djangorestframework==3.11.1
+gunicorn==20.0.4
+psycopg2-binary==2.8.5
+PyYAML==5.3.1
+requests==2.24.0
+drf-api-tracking==1.7.5
+uritemplate==3.0.1
+six==1.15.0
