@@ -3,8 +3,8 @@ name: Continuous Integration and Delivery
 on: [push]
 
 env:
-  WEB_IMAGE: docker.pkg.github.com/theportatcern/Hackathon2020-Pier84/web
-  NGINX_IMAGE: docker.pkg.github.com/theportatcern/Hackathon2020-Pier84/nginx
+  WEB_IMAGE: docker.pkg.github.com/theportatcern/hackathon2020-pier84/web
+  NGINX_IMAGE: docker.pkg.github.com/theportatcern/hackathon2020-pier84/nginx
 
 jobs:
 
