@@ -90,7 +90,6 @@ DATABASES = {'default': {'ENGINE': os.environ.get("SQL_ENGINE", "django.db.backe
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
