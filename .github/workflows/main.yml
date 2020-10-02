@@ -103,8 +103,8 @@ jobs:
             cd /root/humanitarian_feedback
             source .env
             echo "HELLO THERERE!"
-            echo "${GITHUB_ACTOR}"
-            echo ${{ secrets.GITHUB_TOKEN }} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
+            echo "${{ github.actor }}"
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login -u ${{ github.actor }} --password-stdin docker.pkg.github.com
             docker pull $WEB_IMAGE
             docker pull $NGINX_IMAGE
             docker-compose -f docker-compose.prod.yml up -d
