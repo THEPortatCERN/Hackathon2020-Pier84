@@ -94,7 +94,6 @@ jobs:
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           ssh-add - <<< "$PRIVATE_KEY"
-          echo "hello"
       - name: Build and deploy images on DigitalOcean
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
@@ -103,6 +102,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.LOGIN_NAME }}@${{ secrets.DIGITAL_OCEAN_IP_ADDRESS }} << 'ENDSSH'
             cd /root/humanitarian_feedback
             source .env
+            echo ${GITHUB_ACTOR}
             echo ${{ secrets.GITHUB_TOKEN }} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
             docker pull $WEB_IMAGE
             docker pull $NGINX_IMAGE
