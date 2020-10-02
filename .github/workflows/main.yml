@@ -102,6 +102,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.LOGIN_NAME }}@${{ secrets.DIGITAL_OCEAN_IP_ADDRESS }} << 'ENDSSH'
             cd /root/humanitarian_feedback
             source .env
+            echo "HELLO THERERE!"
             echo "${GITHUB_ACTOR}"
             echo ${{ secrets.GITHUB_TOKEN }} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
             docker pull $WEB_IMAGE
