@@ -1,9 +1,17 @@
 from django.test import TestCase
+from django.contrib import auth
 
 
 class BasicTemplateTests(TestCase):
     def setUp(self):
-        pass
+        # Create a new user
+        self.credentials = {'email': 'test@example.com',
+                            'password': 'test'}
+        self.login_credentials = {'username': 'test@example.com',
+                                  'password': 'test'}
+        User = auth.get_user_model()
+        user = User.objects.create_user(**self.credentials)
+        self.client.login(**self.login_credentials)
 
     def test_get_request_home(self):
         """

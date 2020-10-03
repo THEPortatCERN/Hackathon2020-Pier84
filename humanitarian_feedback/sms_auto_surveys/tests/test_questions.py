@@ -1,11 +1,21 @@
 from django.test import TestCase
 from sms_auto_surveys.models import Survey, Question
 from django.urls import reverse
+from django.contrib import auth
 
 
 class ShowQuestionTest(TestCase):
 
     def setUp(self):
+        # Create a new user
+        self.credentials = {'email': 'test@example.com',
+                            'password': 'foo'}
+        self.login_credentials = {'username': 'test@example.com',
+                                  'password': 'foo'}
+        User = auth.get_user_model()
+        user = User.objects.create_user(**self.credentials)
+        self.client.login(**self.login_credentials)
+
         self.survey = Survey(title='A testing survey')
         self.survey.save()
 

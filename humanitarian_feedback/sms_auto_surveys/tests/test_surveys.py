@@ -1,11 +1,38 @@
 from django.test import TestCase
 from sms_auto_surveys.models import Survey, Question, QuestionResponse
 from django.urls import reverse
+from django.contrib import auth
+
+
+class SurveyUnauthenticatedTest(TestCase):
+
+    def setUp(self):
+        self.survey = Survey(title='A testing survey')
+        self.survey.save()
+        self.question = Question(body='A Question',
+                                 kind=Question.TEXT, survey=self.survey)
+        self.question.save()
+
+    def test_show_survey_redirect(self):
+        response = self.client.get(reverse('survey',
+                                   kwargs={'survey_id': self.survey.id}))
+
+        self.assertEqual(response.status_code, 302)
 
 
 class SurveyRedirectionTest(TestCase):
 
     def setUp(self):
+        # Create a new user
+        self.credentials = {'email': 'logintest@example.com',
+                            'password': 'j@PsnJ8H9cprxmn'}
+        self.login_credentials = {'username': 'logintest@example.com',
+                                  'password': 'j@PsnJ8H9cprxmn'}
+        User = auth.get_user_model()
+        user = User.objects.create_user(**self.credentials)
+        self.client.login(**self.login_credentials)
+
+        # Setup the survey
         self.survey = Survey(title='A testing survey')
         self.survey.save()
         self.question = Question(body='A Question',
@@ -58,6 +85,16 @@ class SurveyRedirectionTest(TestCase):
 class SurveyResultsTest(TestCase):
 
     def setUp(self):
+        # Create a new user
+        self.credentials = {'email': 'logintest@example.com',
+                            'password': 'j@PsnJ8H9cprxmn'}
+        self.login_credentials = {'username': 'logintest@example.com',
+                                  'password': 'j@PsnJ8H9cprxmn'}
+        User = auth.get_user_model()
+        user = User.objects.create_user(**self.credentials)
+        self.client.login(**self.login_credentials)
+
+        # Setup the survey
         self.survey = Survey.objects.create(title='A testing survey')
         self.question = Question(body='Question one',
                                  kind=Question.TEXT, survey=self.survey)

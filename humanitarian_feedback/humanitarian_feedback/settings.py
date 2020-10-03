@@ -41,8 +41,13 @@ INSTALLED_APPS = [
 
     # Rest Framework Apps
     'rest_framework',
+    'rest_framework.authtoken',
+
+    # Third part apps
+    'django_filters',
 
     # Local Apps
+    'users',
     'sms_auto_surveys',
 ]
 
@@ -62,7 +67,7 @@ ROOT_URLCONF = 'humanitarian_feedback.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [BASE_DIR, os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'users', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,6 +82,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'humanitarian_feedback.wsgi.application'
 
+# Login settings
+LOGIN_URL = "/accounts/login/"
+ALL_LOGIN_URLS = ["/api-auth/login/", "/accounts/login/"]
+LOGOUT_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/"
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -91,6 +101,7 @@ DATABASES = {'default': {'ENGINE': os.environ.get("SQL_ENGINE", "django.db.backe
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
+AUTH_USER_MODEL = 'users.CustomUser'
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -124,7 +135,13 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Rest framework global settings
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny'],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend'
     ],

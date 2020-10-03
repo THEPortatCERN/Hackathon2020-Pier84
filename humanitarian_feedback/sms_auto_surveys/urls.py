@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
 from sms_auto_surveys.views.surveys import redirects_twilio_request_to_proper_endpoint
 from sms_auto_surveys.views.surveys import redirect_to_first_results
@@ -14,11 +15,11 @@ urlpatterns = [
     url(r'^$', redirect_to_first_results, name='app_root'),
 
     url(r'^survey/(?P<survey_id>\d+)/question/(?P<question_id>\d+)$',
-        show_question,
+        login_required(show_question),
         name='question'),
 
     url(r'^survey/(?P<survey_id>\d+)$',
-        show_survey,
+        login_required(show_survey),
         name='survey'),
 
     url(r'^first-survey/',
@@ -26,7 +27,7 @@ urlpatterns = [
         name='first_survey'),
 
     url(r'^survey/(?P<survey_id>\d+)/results$',
-        show_survey_results,
+        login_required(show_survey_results),
         name='survey_results'),
 
     url(r'^survey/(?P<survey_id>\d+)/question/(?P<question_id>\d+)/question_response$',
@@ -36,6 +37,6 @@ urlpatterns = [
 
 urlpatterns += [
     url(r'process_output_csv/export',
-        process_output_csv_export,
+        login_required(process_output_csv_export),
         name='process_output_csv_export')
 ]

@@ -1,8 +1,11 @@
 {% load static %}
+{% load extra_userlinks %}
+{% load rest_framework %}
 
 <!DOCTYPE html>
 <html>
 
+{% block style %}
 <style>
 body {
   width: 100%;
@@ -15,15 +18,41 @@ body {
   border-top: None;
   border-radius: 0px;
   font-family: "Roboto","Trebuchet MS","Tahoma","sans-serif";
-  padding-top: 20px;
+  padding-top: 6px;
   position: static;
   height: 60px;
   margin-bottom: -15px;
   }
+    .navbar-nav.pull-right {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .navbar-nav.pull-right li a {
+      color: white!important;
+    }
   .navbar .container {
-    margin-top: 20px;
+    margin-top: 0px;
   }
+    .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+      background: None!important;
+    }
+    .navbar-nav .dropdown ul {
+      width: 180px;
+      margin-left: calc(100% - 190px);
+      background: rgba(255,255,255,0.5);
+      margin-top: 3px!important;
+    }
+    .navbar .dropdown-menu li a {
+      color: #6c6e72!important;
+      font-size: 16px;
+    }
+    ul.errorlist {
+      list-style: None;
+      padding-left: 0px;
+      color: red;
+    }
 </style>
+{% endblock %}
 
     <head>
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -44,6 +73,15 @@ body {
         </div>
         <div class="navbar navbar-static-top navbar-inverse" role="navigation" aria-label="navbar">
         <div class="container">
+          <ul class="nav navbar-nav pull-right">
+            {% block userlinks %}
+              {% if user.is_authenticated %}
+                {% optional_logout_custom request user %}
+              {% else %}
+                {% optional_login_custom request %}
+              {% endif %}
+            {% endblock %}
+          </ul>
         </div>
         </div>
 

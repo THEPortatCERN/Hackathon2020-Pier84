@@ -1,0 +1,39 @@
+{% extends "rest_framework/login_base.html" %}
+
+{% load static %}
+
+{% block style %}
+{{ block.super }}
+<style>
+  .container {
+    width: 100%;
+    padding: 0px;
+    }
+  .container-fluid {
+    margin-top: 50px!important;
+  }
+  form .text-error {
+    color: red!important;
+    padding: 0px;
+  }
+</style>
+{% endblock %}
+
+{% block branding %}
+    <h3 style="margin: 0 0 20px;">Login</h3>
+{% endblock %}
+
+{% block body %}
+    <div class="first-bar" style="height: 45px; background-color: #ebece8; width: 100%;">
+      <div class="first-bar-wrapper" style="width: 1170px; margin: auto; padding-top: 0px; height: 45px;">
+        <h1 class="wrapper-logo" style="position: absolute; display: block; margin-top: 0px;">
+          <a href="/" title="Home" rel="home" class="header__logo" id="logo" style=""><img src="/staticfiles/images/logo.png" alt="Afadal Tawassul" class="header__logo-image" style="max-height: 160px;"/></a>
+        </h1>
+        <div class="header-site-slogan" style="height: 60px; padding-top: 9px; color: black; font-family: sans-serif; font-size: 20px!important; padding-left: 260px; font-weight: bold;">Accountability to Affected Populations</div>
+    </div>
+    <div class="second-bar" style="height: 120px; background-color: white; width: 100%;"></div>
+    <div class="navbar" style="background: #0070bf; color: white; border: none; border-top: None; border-radius: 0px; font-family: 'sans-serif'; padding-top: 20px; position: static; height: 60px; margin-bottom: -15px;"></div>
+
+    {{ block.super }}
+
+{% endblock %}
