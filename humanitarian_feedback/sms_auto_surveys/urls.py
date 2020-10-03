@@ -15,11 +15,11 @@ urlpatterns = [
     url(r'^$', redirect_to_first_results, name='app_root'),
 
     url(r'^survey/(?P<survey_id>\d+)/question/(?P<question_id>\d+)$',
-        login_required(show_question),
+        show_question,
         name='question'),
 
     url(r'^survey/(?P<survey_id>\d+)$',
-        login_required(show_survey),
+        show_survey,
         name='survey'),
 
     url(r'^first-survey/',
