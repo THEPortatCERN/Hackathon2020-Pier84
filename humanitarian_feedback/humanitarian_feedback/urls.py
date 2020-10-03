@@ -22,4 +22,5 @@ logger = logging.getLogger(__name__)
 
 urlpatterns = [
     path(r'', TemplateView.as_view(template_name='home.html'), name='home'),
+    path(r'process_output_csv', TemplateView.as_view(template_name='process_output_csv.html'), name='process_output_csv'),
 ]
