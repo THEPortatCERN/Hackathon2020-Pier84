@@ -1,19 +1,61 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 
-{% load static %}
-{% load rest_framework %}
+<style>
+body {
+  width: 100%;
+  margin: none;
+}
+.navbar {
+  background: #0070bf!important;
+  color: white;
+  border: none;
+  border-top: None;
+  border-radius: 0px;
+  font-family: "Roboto","Trebuchet MS","Tahoma","sans-serif";
+  padding-top: 20px;
+  position: static;
+  height: 60px;
+  margin-bottom: -15px;
+  }
+  .navbar .container {
+    margin-top: 20px;
+  }
+</style>
 
-{% block script %}
-{% endblock %}
+    <head>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="{% static 'styles/main.css' %}" rel="stylesheet">
+    </head>
+    <body>
 
-{% block style %}
-{% endblock %}
 
-{% block title %}
-{% endblock %}
+      <div class="first-bar" style="height: auto; background-color: #ebece8; width: 100%;">
+        <div class="first-bar-wrapper" style="max-width: 1300px; margin: auto; padding-top: 0px; height: 45px;">
+          <h1 class="wrapper-logo" style="position: absolute; display: block; margin-top: 0px;">
+            <a href="/" title="Home" rel="home" class="header__logo" id="logo" style=""><img src="/staticfiles/images/logo.png" alt="Afadal Tawassul" class="header__logo-image" style="max-height: 160px;"/></a>
+          </h1>
+          <div class="header-site-slogan" style="height: 60px; padding-top: 9px; color: black; font-family: sans-serif; font-size: 20px!important; padding-left: 260px; font-weight: bold;">Accountability to Affected Populations</div>
+        </div>
+        <div class="second-bar" style="height: 120px; background-color: white; width: 100%;"></div>
+        </div>
+        <div class="navbar navbar-static-top navbar-inverse" role="navigation" aria-label="navbar">
+        <div class="container">
+        </div>
+        </div>
 
-{% block content %}
-{% endblock %}
+        <title>{% block title %}{% endblock %}</title>
 
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        {% block scripts %}{% endblock %}
+    </body>
 </html>
