@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include, url
 from django.views.generic import TemplateView
+from django.shortcuts import redirect
 
 import logging
 logger = logging.getLogger(__name__)
@@ -24,4 +26,8 @@ urlpatterns = [
     path(r'', TemplateView.as_view(template_name='home.html'), name='home'),
     path(r'process_output_csv', TemplateView.as_view(template_name='process_output_csv.html'), name='process_output_csv'),
     path('questions', TemplateView.as_view(template_name='add_questions.html'), name='add_questions'),
+]
+urlpatterns += [
+    url(r'^automated-survey/', include('sms_auto_surveys.urls'), name='surveys'),
+    url(r'^$', lambda r: redirect('/automated-survey/'), name='root-redirect')
 ]

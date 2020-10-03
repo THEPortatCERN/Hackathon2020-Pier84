@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'sms_auto_surveys.middleware.SMSMiddleware',
 ]
 
 ROOT_URLCONF = 'humanitarian_feedback.urls'

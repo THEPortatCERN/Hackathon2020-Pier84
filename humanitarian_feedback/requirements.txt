@@ -10,3 +10,4 @@ requests==2.24.0
 drf-api-tracking==1.7.5
 uritemplate==3.0.1
 six==1.15.0
+twilio==6.9.0
