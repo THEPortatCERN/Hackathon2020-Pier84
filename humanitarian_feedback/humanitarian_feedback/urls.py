@@ -20,6 +20,8 @@ from django.views.generic import TemplateView
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
+from sms_auto_surveys.views.process_output_csv_export import process_output_csv_export
+
 import logging
 logger = logging.getLogger(__name__)
 
@@ -35,4 +37,6 @@ urlpatterns = [
     # User account URLs
     path('api-auth/', include('rest_framework.urls')),
     path("", include("users.urls")),
+
+    path('automated-survey/csv-download/', process_output_csv_export, name='csv_download'),
 ]

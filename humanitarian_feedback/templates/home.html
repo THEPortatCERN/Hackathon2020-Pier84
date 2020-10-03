@@ -21,6 +21,9 @@
 .section {
   margin-bottom: 50px;
 }
+.button-group {
+  margin-top: 20px;
+}
 </style>
 
 <div class="content">
@@ -42,9 +45,12 @@
 
   <h2 class="results-title">Survey Results</h2>
   <div class="survey-results-intro text">
-    Click the button below to view the survey results.
+    Click the buttons below to view the survey results, or download all the results as a CSV file.
   </div>
-  <a href="/automated-survey/survey/1/results"><button class="button-survey-results">View survey results</button></a>
+  <div class="button-group">
+    <a href="/automated-survey/survey/1/results"><button class="button-view-survey-results" style="margin-right: 20px;">View survey results</button></a>
+    <a href="/automated-survey/csv-download"><button class="button-download-csv-survey-results">Download survey results</button></a>
+  </div>
 
 </div>
 
