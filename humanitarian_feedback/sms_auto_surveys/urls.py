@@ -7,6 +7,9 @@ from sms_auto_surveys.views.questions import show_question
 from sms_auto_surveys.views.surveys import show_survey, show_survey_results
 from sms_auto_surveys.views.question_responses import save_response
 
+from sms_auto_surveys.views.process_output_csv_export import process_output_csv_export
+
+
 urlpatterns = [
     url(r'^$', redirect_to_first_results, name='app_root'),
 
@@ -29,4 +32,10 @@ urlpatterns = [
     url(r'^survey/(?P<survey_id>\d+)/question/(?P<question_id>\d+)/question_response$',
         csrf_exempt(save_response),
         name='save_response')
+]
+
+urlpatterns += [
+    url(r'process_output_csv/export',
+        process_output_csv_export,
+        name='process_output_csv_export')
 ]
