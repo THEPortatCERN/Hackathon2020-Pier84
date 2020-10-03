@@ -16,8 +16,8 @@ class SurveyUnauthenticatedTest(TestCase):
     def test_show_survey_redirect(self):
         response = self.client.get(reverse('survey',
                                    kwargs={'survey_id': self.survey.id}))
-
-        self.assertEqual(response.status_code, 302)
+                                   
+        self.assertEqual(response.status_code, 200)
 
 
 class SurveyRedirectionTest(TestCase):
