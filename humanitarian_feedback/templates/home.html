@@ -2,8 +2,64 @@
 
 <html>
 
-{% block title %}
-<h1>Pier 84: Afdal Tawassul</h1>
+{% block content %}
+
+<style>
+.content {
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+.text {
+  font-size: 16px;
+}
+.diagram {
+  text-align: center;
+}
+.button-survey-results {
+  margin: 14px 0px;
+}
+.section {
+  margin-bottom: 50px;
+}
+</style>
+
+<div class="content">
+
+<div class="introduction section">
+
+  <h2 class="introduction-title">Project Introduction</h2>
+  <div class="introduction-text text">
+    The Afdal Tawassul Team came together as part of <a href="https://indico.cern.ch/event/917987/">THE Port 2020 online Humanitarian Hackathon</a>, hosted virtually at CERN. We have developed an SMS-based automated feedback mechanism for gathering survey feedback from internally displaced people in Yemen. We have aimed to reach people currently receiving assistance from UNHCR and their partners including the World Food Programme (WFP), as well as those outside the system. Through enabling UN agenices to more effectively gather feedback, we hope that this tool will ultimately facilitate more data driven humanitarian programming and improve accountability to affected populations.
+  </div>
+  <div class="diagram">
+    <img src="/staticfiles/images/close_the_loop.jpeg" alt="Survey Diagram" class="close-the-loop"/>
+  </div>
+
+</div>
+
+
+<div class="survey-results section">
+
+  <h2 class="results-title">Survey Results</h2>
+  <div class="survey-results-intro text">
+    Click the button below to view the survey results.
+  </div>
+  <a href="/automated-survey/survey/1/results"><button class="button-survey-results">View survey results</button></a>
+
+</div>
+
+
+<div class="thankyou section">
+
+  <h2 class="thankyou-title">Thank you</h2>
+  <div class="thankyou-text text">
+    A big thank you to our mentors Chris and Ben from The Port, to Reka from UNHCR, and to The Port Association, for offering us the opportunity to work on this project and supporting us in its development.
+  </div>
+
+</div>
+
+</div>
+
 {% endblock %}
 
 </html>
