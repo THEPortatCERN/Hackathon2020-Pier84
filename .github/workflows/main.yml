@@ -1,6 +1,9 @@
 name: Continuous Integration and Delivery
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 env:
   WEB_IMAGE: docker.pkg.github.com/theportatcern/hackathon2020-pier84/web
