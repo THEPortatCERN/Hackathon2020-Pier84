@@ -8,6 +8,7 @@ from sms_auto_surveys.views.questions import show_question
 from sms_auto_surveys.views.surveys import show_survey, show_survey_results, show_all_survey_results
 from sms_auto_surveys.views.question_responses import save_response
 from sms_auto_surveys.views.process_output_csv_export import process_output_csv_export
+from sms_auto_surveys.views.initiate_survey import InitiateSurveyView
 
 
 urlpatterns = [
@@ -24,6 +25,8 @@ urlpatterns = [
     url(r'^first-survey/',
         csrf_exempt(redirects_twilio_request_to_proper_endpoint),
         name='first_survey'),
+
+    url(r"^send-surveys/", login_required(InitiateSurveyView.as_view()), name="send_surveys"),
 
     url(r'^survey/(?P<survey_id>\d+)/results$',
         login_required(show_survey_results),
