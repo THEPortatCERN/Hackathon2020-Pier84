@@ -6,3 +6,4 @@ env
 /humanitarian_feedback/mediafiles/
 .env.*
 .env
+.*.sw[op]
