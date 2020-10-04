@@ -62,9 +62,9 @@ def show_survey(request, survey_id):
 def redirects_twilio_request_to_proper_endpoint(request):
     answering_question = request.session.get('answering_question_id')
     if not answering_question:
-        first_survey = Survey.objects.first()
+        latest_survey = Survey.objects.last()
         redirect_url = reverse('survey',
-                               kwargs={'survey_id': first_survey.id})
+                               kwargs={'survey_id': latest_survey.id})
     else:
         question = Question.objects.get(id=answering_question)
         redirect_url = reverse('save_response',

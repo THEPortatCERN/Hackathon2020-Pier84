@@ -16,7 +16,7 @@ class SurveyUnauthenticatedTest(TestCase):
     def test_show_survey_redirect(self):
         response = self.client.get(reverse('survey',
                                    kwargs={'survey_id': self.survey.id}))
-                                   
+
         self.assertEqual(response.status_code, 200)
 
 
@@ -103,13 +103,6 @@ class SurveyResultsTest(TestCase):
                          call_sid='sup3runiq3',
                          phone_number='+14155552671',
                          question=self.question).save()
-
-    def test_redirect_to_results(self):
-        redirect = self.client.get(reverse('app_root'))
-        survey_results_url = reverse('survey_results', kwargs={'survey_id':
-                                     self.survey.id})
-
-        assert survey_results_url in redirect.url
 
     def test_render_context(self):
         survey_results_url = reverse('survey_results', kwargs={'survey_id':
