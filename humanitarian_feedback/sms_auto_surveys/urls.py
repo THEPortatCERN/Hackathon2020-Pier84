@@ -48,5 +48,5 @@ urlpatterns = [
     url(r"^set-questions/", login_required(SetQuestionsView.as_view()), name="set_questions"),
 
     # Analytics dashboard
-    url(r'survey/(?P<survey_id>\d+)/dashboard', include('dashboard_flexmonster.urls')),
+    url(r'survey/(?P<survey_id>\d+)/dashboard/', include('dashboard_flexmonster.urls')),
 ]
