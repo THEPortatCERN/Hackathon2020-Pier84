@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # Local Apps
     'users',
     'sms_auto_surveys',
+    'dashboard_flexmonster',
 ]
 
 MIDDLEWARE = [

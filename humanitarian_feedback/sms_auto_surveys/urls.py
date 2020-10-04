@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import include, url
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 
@@ -42,5 +42,8 @@ urlpatterns = [
 
     url(r'csv-download',
         login_required(process_output_csv_export),
-        name='csv_download')
+        name='csv_download'),
+
+    # Analytics dashboard
+    url(r'survey/(?P<survey_id>\d+)/dashboard', include('dashboard_flexmonster.urls'))
 ]
