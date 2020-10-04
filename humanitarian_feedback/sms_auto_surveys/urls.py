@@ -9,10 +9,11 @@ from sms_auto_surveys.views.surveys import show_survey, show_survey_results, sho
 from sms_auto_surveys.views.question_responses import save_response
 from sms_auto_surveys.views.process_output_csv_export import process_output_csv_export
 from sms_auto_surveys.views.initiate_survey import InitiateSurveyView
+from sms_auto_surveys.views.set_questions import SetQuestionsView
 
 
 urlpatterns = [
-    url(r'^$', redirect_to_first_results, name='app_root'),
+    #url(r'^$', redirect_to_first_results, name='app_root'),
 
     url(r'^survey/(?P<survey_id>\d+)/question/(?P<question_id>\d+)$',
         show_question,
@@ -42,5 +43,7 @@ urlpatterns = [
 
     url(r'csv-download',
         login_required(process_output_csv_export),
-        name='csv_download')
+        name='csv_download'),
+
+    url(r"^set-questions/", login_required(SetQuestionsView.as_view()), name="set_questions"),
 ]
