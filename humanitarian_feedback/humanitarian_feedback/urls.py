@@ -36,7 +36,5 @@ urlpatterns = [
 
     # User account URLs
     path('api-auth/', include('rest_framework.urls')),
-    path("", include("users.urls")),
-
-    path('automated-survey/csv-download/', process_output_csv_export, name='csv_download'),
+    path('accounts/', include("users.urls")),
 ]
