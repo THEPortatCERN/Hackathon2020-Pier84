@@ -61,6 +61,26 @@ body {
       background: #0070bf;
       outline: 0px!important;
     }
+    footer {
+      background: #0070bf!important;
+      color: white;
+    }
+    footer .footer-link {
+      color: white!important;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    footer .footer-bar {
+      width: 1170px;
+      margin: auto;
+      padding: 15px 0px;
+    }
+    footer .footer-section {
+      padding: 8px 15px;
+    }
+    .content-container {
+      min-height: calc(100vh - 240px);
+    }
 </style>
 {% endblock %}
 
@@ -99,7 +119,7 @@ body {
 
         <title>{% block title %}{% endblock %}</title>
 
-        <div class="container">
+        <div class="container content-container">
             {% block content %}{% endblock %}
         </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -108,4 +128,19 @@ body {
         <script src="{% static 'js/main.js' %}"></script>
         {% block scripts %}{% endblock %}
     </body>
+
+    <footer>
+      <div class="footer-bar">
+
+        <div class="footer-section contact">
+          <a href="afdal-tawassul@cern.ch" class="footer-link">Contact us</a>
+        </div>
+
+        <div class="footer-section data-privacy">
+          <a href="/data-protection/" class="footer-link">Data protection and privacy</a>
+        </div>
+
+      </div>
+    </footer>
+
 </html>
