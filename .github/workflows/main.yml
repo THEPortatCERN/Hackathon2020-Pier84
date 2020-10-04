@@ -26,6 +26,8 @@ jobs:
           SQL_HOST: ${{ secrets.SQL_HOST }}
           SQL_PORT: ${{ secrets.SQL_PORT }}
           DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
         run: |
           echo DEBUG=0 >> .env
           echo SQL_ENGINE=django.db.backends.postgresql >> .env
@@ -37,6 +39,8 @@ jobs:
           echo SQL_HOST="'$SQL_HOST'" >> .env
           echo SQL_PORT="'$SQL_PORT'" >> .env
           echo DJANGO_ALLOWED_HOSTS="$DJANGO_ALLOWED_HOSTS" >> .env
+          echo TWILIO_ACCOUNT_SID="'$TWILIO_ACCOUNT_SID'" >> .env
+          echo TWILIO_AUTH_TOKEN="'$TWILIO_AUTH_TOKEN'" >> .env
       - name: Set environment variables
         run: |
           echo ::set-env name=WEB_IMAGE::${{ env.WEB_IMAGE }}
@@ -77,6 +81,8 @@ jobs:
           SQL_PORT: ${{ secrets.SQL_PORT }}
           DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
           LOGIN_NAME: ${{ secrets.LOGIN_NAME }}
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
         run: |
           echo DEBUG=0 >> .env
           echo SQL_ENGINE=django.db.backends.postgresql >> .env
@@ -91,6 +97,8 @@ jobs:
           echo NGINX_IMAGE=${{ env.NGINX_IMAGE }} >> .env
           echo DJANGO_ALLOWED_HOSTS="$DJANGO_ALLOWED_HOSTS" >> .env
           echo LOGIN_NAME="$LOGIN_NAME" >> .env
+          echo TWILIO_ACCOUNT_SID="$TWILIO_ACCOUNT_SID" >> .env
+          echo TWILIO_AUTH_TOKEN="$TWILIO_AUTH_TOKEN" >> .env
       - name: Add the private SSH key to the ssh-agent
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
