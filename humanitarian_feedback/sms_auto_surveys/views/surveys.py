@@ -1,4 +1,4 @@
-from sms_auto_surveys.models import Survey, Question
+from sms_auto_surveys.models import Survey, Question, QuestionResponse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render
@@ -19,6 +19,18 @@ def show_survey_results(request, survey_id):
     }
 
     return render(request, 'results.html', context=template_context)
+
+
+@require_GET
+def show_all_survey_results(request):
+    responses = QuestionResponse.objects.order_by('call_sid', 'question')
+    responses_to_render = [response.as_dict() for response in responses]
+
+    template_context = {
+        'responses': responses_to_render,
+    }
+
+    return render(request, 'all_results.html', context=template_context)
 
 
 @csrf_exempt
