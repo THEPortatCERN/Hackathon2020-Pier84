@@ -26,6 +26,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 urlpatterns = [
+    path(r'data-protection/', login_required(TemplateView.as_view(template_name='data_protection.html')), name='home'),
     path(r'', login_required(TemplateView.as_view(template_name='home.html')), name='home'),
     path(r'process_output_csv', login_required(TemplateView.as_view(template_name='process_output_csv.html')), name='process_output_csv'),
     path('questions', login_required(TemplateView.as_view(template_name='add_questions.html')), name='add_questions'),
